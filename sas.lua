@@ -51,7 +51,8 @@
                                     -- // Hit/Target
                                     if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
                                         -- // Hit to account prediction
-                                        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+        local oldvel = Character.SelectedPart.Velocity
+                                        local Hit = SelectedPart.CFrame + (Vector3.new(oldvel.X, -0, oldvel.Y) * DaHoodSettings.Prediction)
                             
                                         -- // Return modded val
                                         return (k == "Hit" and Hit or SelectedPart)
