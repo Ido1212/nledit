@@ -51,10 +51,7 @@
                                     -- // Hit/Target
                                     if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
                                         -- // Hit to account prediction
-        game:GetService('RunService').RenderStepped:Connect(function()
-        local oldvel = SelectedPart.Velocity
-            end)
-                                        local Hit = SelectedPart.CFrame + (Vector3.new(oldvel.X, -0, oldvel.Y) * DaHoodSettings.Prediction)
+                                        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
                             
                                         -- // Return modded val
                                         return (k == "Hit" and Hit or SelectedPart)
