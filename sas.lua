@@ -16,7 +16,8 @@
                                 SilentAim = true,
                                 AimLock = false,
                                 Prediction = 0.14,
-                                AimLockKeybind = Enum.KeyCode.E
+                                AimLockKeybind = Enum.KeyCode.E,
+                                Resolver = false,
                             }
                             getgenv().DaHoodSettings = DaHoodSettings
                             
@@ -62,6 +63,11 @@
                                 return __index(t, k)
                             end)
                             
+                            game:GetService("RunService").Heartbeat:Connect(function()
+                                 if DaHoodSettings.Resolver then
+                                 local oldvelocity = SelectedPart.Velocity
+                            end)
+                            
                             -- // Aimlock
                             RunService:BindToRenderStep("AimLock", 0, function()
                                 if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
@@ -69,8 +75,11 @@
                                     local SelectedPart = Aiming.SelectedPart
                             
                                     -- // Hit to account prediction
+                                    if DaHoodSettings.Resolver then
+                                    local Hit = SelectedPart.CFrame + (Vector3.new(oldvelocity.X, -0, oldvelocity.Z) * DaHoodSettings.Prediction)
+                                    else
                                     local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
-                            
+                                    end
                                     CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
                                 end
                                 end)
