@@ -52,7 +52,12 @@
                                     -- // Hit/Target
                                     if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
                                         -- // Hit to account prediction
-                                        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+        
+                                            if DaHoodSettings.Resolver then
+                                    local Hit = SelectedPart.CFrame + (Vector3.new(oldvelocity.X, -0, oldvelocity.Z) * DaHoodSettings.Prediction)
+                                    else
+                                    local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+                                    end
                             
                                         -- // Return modded val
                                         return (k == "Hit" and Hit or SelectedPart)
