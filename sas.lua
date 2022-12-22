@@ -71,6 +71,7 @@
                             game:GetService("RunService").Heartbeat:Connect(function()
                                  if DaHoodSettings.Resolver then
                                  local oldvelocity = SelectedPart.Velocity
+                                 end
                             end)
                             
                             -- // Aimlock
